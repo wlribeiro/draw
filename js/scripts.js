@@ -8,6 +8,9 @@ var initialPosition = {
   y: undefined,
 };
 
+const DEFAULT_DRAW_COLOR = "white"
+var drawColor = DEFAULT_DRAW_COLOR
+
 function init() {
   console.warn("starting app");
   const canvas = CANVASSELECTOR;
@@ -40,17 +43,22 @@ function getMousePointerUp(event) {
 }
 
 function draw(coordinates){
-    console.log(initialPosition, coordinates)
-    console.log( )
         ctx.beginPath();
         ctx.moveTo(initialPosition.x, initialPosition.y);
         ctx.lineTo(coordinates.x, coordinates.y);
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = drawColor;
         // ctx.strokeStyle = 12;
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 2;
         ctx.lineCap = 'round';
         ctx.stroke();
         ctx.closePath();
 
         initialPosition = { ...coordinates}
 }
+
+function setDrawColor(event){
+  console.log(event)
+  drawColor = event.target.value;
+}
+
+function setPencilSize(){}
